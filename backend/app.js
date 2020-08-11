@@ -1,7 +1,19 @@
 import express from "express";
 import bodyParser from "body-parser";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const app = express()
+
+mongoose
+  .connect(
+    `mongodb+srv://floriansr:${process.env.MONGODB_PASSWORD}@cluster0.ozjxx.mongodb.net/<dbname>?retryWrites=true&w=majority`,
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then(() => console.log("Connexion à MongoDB réussie !"))
+  .catch(() => console.log("Connexion à MongoDB échouée !"));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
