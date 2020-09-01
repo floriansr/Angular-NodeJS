@@ -11,7 +11,7 @@ const app = express()
 //MONGODB
 mongoose
   .connect(
-    `mongodb+srv://floriansr:${process.env.MONGODB_PASSWORD}@cluster0.ozjxx.mongodb.net/<dbname>?retryWrites=true&w=majority`,
+    `mongodb+srv://${process.env.MONGODB_USERNAME_DB}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER}.ozjxx.mongodb.net/<dbname>?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
