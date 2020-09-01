@@ -2,6 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import stuffRoutes from './router/stuff.js';
+import userRoutes from "./router/user.js";
+
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -29,6 +31,8 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use('/api/stuff', stuffRoutes);
+app.use("/api/auth", userRoutes);
+
 
 
 export default app
