@@ -1,5 +1,7 @@
 import express from "express"
 import User from "../models/user.js"
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken";
 const logs = express.Router()
 
 logs.signup = (req, res, next) => {
@@ -32,7 +34,9 @@ logs.login = (req, res, next) => {
           }
           res.status(200).json({
             userId: user._id,
-            token: "TOKEN",
+            token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+              expiresIn: "24h",
+            }),
           });
         })
         .catch((error) => res.status(500).json({ error }));
