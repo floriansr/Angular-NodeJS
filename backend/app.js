@@ -3,10 +3,10 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import stuffRoutes from './router/stuff.js';
 import userRoutes from "./router/user.js";
-
 import dotenv from "dotenv";
-dotenv.config();
+import path from "path";
 
+dotenv.config();
 
 const app = express()
 
@@ -29,6 +29,8 @@ app.use((req, res, next) => {
 
 //PARSER
 app.use(bodyParser.json());
+
+app.use("/images", express.static(path.join(path.resolve(), "images")));
 
 app.use('/api/stuff', stuffRoutes);
 app.use("/api/auth", userRoutes);
